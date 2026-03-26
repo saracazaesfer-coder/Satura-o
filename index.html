@@ -7,10 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --rd-purple: #4A148C; /* Roxo Profundo */
+            --rd-purple: #4A148C;
             --rd-purple-light: #6A1B9A; 
-            --rd-verde-oliva: #607D3B; /* Verde Oliva solicitado */
-            --rd-laranja: #F26522; /* Laranja solicitado */
+            --rd-verde-oliva: #607D3B;
+            --rd-laranja: #F26522;
             --bg-body: #F9FAFB;
             --white: #FFFFFF;
             --border: #E5E7EB;
@@ -27,7 +27,6 @@
             height: 100vh;
         }
 
-        /* HEADER PADRÃO (image_3dc0a7.png) */
         header {
             background-color: var(--white);
             padding: 12px 60px;
@@ -38,17 +37,15 @@
         }
 
         .logo-area { display: flex; align-items: center; gap: 10px; }
-        .logo-icon { background: var(--rd-verde-oliva); color: white; padding: 8px; border-radius: 8px; font-weight: bold; }
         .brand-info { line-height: 1.2; }
         .brand-name { font-weight: 700; color: var(--text-main); font-size: 1rem; }
         .brand-sub { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
 
         nav { display: flex; gap: 8px; }
         .tab-btn {
-            background: none; border: none; padding: 8px 16px;
+            background: none; border: none; padding: 8px 20px;
             border-radius: 20px; cursor: pointer; font-weight: 600;
             color: var(--text-muted); font-size: 0.85rem;
-            display: flex; align-items: center; gap: 6px;
         }
         .tab-btn.active { background-color: var(--rd-purple); color: var(--white); }
 
@@ -62,26 +59,21 @@
 
         .btn-action-top { 
             background-color: var(--rd-laranja); color: white; border: none; 
-            padding: 10px 20px; border-radius: 8px; font-weight: 700; 
-            cursor: pointer; display: flex; align-items: center; gap: 8px;
+            padding: 10px 25px; border-radius: 8px; font-weight: 700; cursor: pointer;
         }
 
-        /* CARDS DASHBOARD (image_3dc0a7.png) */
         .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
         .stat-card {
-            background: var(--white); padding: 20px; border-radius: 12px;
-            border: 1px solid var(--border); position: relative;
+            background: var(--white); padding: 25px; border-radius: 12px;
+            border: 1px solid var(--border);
         }
-        .stat-card::after { content: ''; position: absolute; top: 15px; right: 15px; width: 8px; height: 8px; border-radius: 50%; }
-        .card-ativos::after { background: var(--rd-laranja); }
-        .card-resolvidos::after { background: var(--rd-verde-oliva); }
-        .card-mes::after { background: var(--rd-purple-light); }
-        .card-total::after { background: #8B5CF6; }
+        .card-ativos { border-top: 4px solid var(--rd-laranja); }
+        .card-uf { border-top: 4px solid var(--rd-purple); }
+        .card-total { border-top: 4px solid var(--rd-verde-oliva); }
 
         .stat-val { font-size: 2.2rem; font-weight: 700; color: var(--text-main); display: block; margin-bottom: 5px; }
-        .stat-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+        .stat-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
 
-        /* FORMULÁRIO (image_3dc0c4.png) */
         .form-card { background: var(--white); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; max-width: 800px; margin: 0 auto; }
         .form-body { padding: 30px; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
@@ -89,42 +81,38 @@
         label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--text-main); }
         input, select, textarea { 
             width: 100%; padding: 12px; border: 1px solid var(--border); 
-            border-radius: 8px; font-family: inherit; font-size: 0.9rem;
+            border-radius: 8px; font-family: inherit; font-size: 0.9rem; background: #fff;
         }
 
         .sla-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
         .sla-item { 
-            border: 1px solid var(--border); padding: 12px; text-align: center; 
-            border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.8rem; color: var(--text-muted);
+            border: 1px solid var(--border); padding: 15px; text-align: center; 
+            border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.8rem;
         }
         .sla-item.selected { border-color: var(--rd-purple); background: #F3E5F5; color: var(--rd-purple); }
 
         .form-footer { padding: 20px 30px; background: #F9FAFB; border-top: 1px solid var(--border); text-align: right; }
-        .btn-submit { background: var(--rd-verde-oliva); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.9rem; }
+        .btn-submit { background: var(--rd-verde-oliva); color: white; border: none; padding: 12px 40px; border-radius: 8px; font-weight: 700; cursor: pointer; }
 
-        /* HISTÓRICO (image_3dc0c7.png) */
-        .history-filters { display: flex; gap: 15px; margin-bottom: 20px; }
-        .search-input { flex: 1; padding: 10px 15px; border: 1px solid var(--border); border-radius: 8px; }
         .data-table { width: 100%; border-collapse: collapse; background: var(--white); border: 1px solid var(--border); border-radius: 12px; }
         .data-table th { text-align: left; padding: 15px; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; border-bottom: 1px solid var(--border); }
         .data-table td { padding: 15px; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--text-main); }
-        .badge-status { color: var(--rd-laranja); font-weight: 700; font-size: 0.75rem; display: flex; align-items: center; gap: 5px; }
+        .status-dot { color: var(--rd-laranja); font-weight: 700; }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo-area">
-        <div class="logo-icon">📈</div>
         <div class="brand-info">
-            <div class="brand-name">Saturação</div>
-            <div class="brand-sub">Registro de Serviços</div>
+            <div class="brand-name">SATURAÇÃO</div>
+            <div class="brand-sub">CONTROLE OPERACIONAL RD SAÚDE</div>
         </div>
     </div>
     <nav>
-        <button class="tab-btn active" onclick="switchTab('dashboard')">📊 Dashboard</button>
-        <button class="tab-btn" onclick="switchTab('novo')">✚ Novo Registro</button>
-        <button class="tab-btn" onclick="switchTab('historico')">📋 Histórico</button>
+        <button class="tab-btn active" onclick="switchTab('dashboard')">Dashboard</button>
+        <button class="tab-btn" onclick="switchTab('novo')">Novo Registro</button>
+        <button class="tab-btn" onclick="switchTab('historico')">Histórico</button>
     </nav>
 </header>
 
@@ -133,23 +121,23 @@
         <div class="view-header">
             <div class="view-title">
                 <h1>Painel de Controle</h1>
-                <p>Monitore as contingências e alterações de nível de serviço</p>
+                <p>Gestão de contingências e níveis de serviço em tempo real</p>
             </div>
-            <button class="btn-action-top" onclick="switchTab('novo')">✚ Novo Registro</button>
+            <button class="btn-action-top" onclick="switchTab('novo')">Novo Registro</button>
         </div>
 
         <div class="stats-grid">
             <div class="stat-card card-ativos">
                 <span class="stat-val" id="dash-ativos">0</span>
-                <span class="stat-label">Ativos Agora</span>
+                <span class="stat-label">Eventos Ativos</span>
             </div>
-            <div class="stat-card card-resolvidos">
+            <div class="stat-card card-uf">
                 <span class="stat-val" id="dash-uf">0</span>
                 <span class="stat-label">UFs Afetadas</span>
             </div>
-            <div class="stat-card card-mes">
+            <div class="stat-card" style="border-top: 4px solid #E5E7EB;">
                 <span class="stat-val">100%</span>
-                <span class="stat-label">SLA Global</span>
+                <span class="stat-label">Disponibilidade</span>
             </div>
             <div class="stat-card card-total">
                 <span class="stat-val" id="dash-total">0</span>
@@ -159,55 +147,55 @@
     </div>
 
     <div id="novo" class="view">
-        <div class="view-header">
-            <div class="view-title">
-                <h1>Novo Registro de Contingência</h1>
-                <p>Registre uma alteração de nível de serviço na malha</p>
-            </div>
-        </div>
-
         <div class="form-card">
             <div class="form-body">
                 <div class="form-group">
-                    <label>Nome da Contingência / Operação *</label>
-                    <input type="text" id="f-nome" placeholder="Ex: Operação Chuva Verão SP">
+                    <label>Nome da Contingência *</label>
+                    <input type="text" id="f-nome" placeholder="Ex: Saturação SP - Alagamentos">
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label>UF *</label>
                         <select id="f-uf">
-                            <option value="">Selecione...</option>
-                            <option>SP</option><option>RJ</option><option>MG</option><option>PR</option>
+                            <option value="">Selecione a UF</option>
+                            <option value="AC">Acre</option><option value="AL">Alagoas</option><option value="AP">Amapá</option><option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option><option value="CE">Ceará</option><option value="DF">Distrito Federal</option><option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option><option value="MA">Maranhão</option><option value="MT">Mato Grosso</option><option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option><option value="PA">Pará</option><option value="PB">Paraíba</option><option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option><option value="PI">Piauí</option><option value="RJ">Rio de Janeiro</option><option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option><option value="RO">Rondônia</option><option value="RR">Roraima</option><option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option><option value="SE">Sergipe</option><option value="TO">Tocantins</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Localidade (Foco) *</label>
+                        <label>Localidade *</label>
                         <select id="f-localidade">
                             <option>Capital</option>
                             <option>Interior</option>
-                            <option>Ambos (Capital e Interior)</option>
+                            <option>Ambos</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Cidade</label>
-                        <input type="text" id="f-cidade" placeholder="Opcional">
+                        <label>Cidade (Opcional)</label>
+                        <input type="text" id="f-cidade">
                     </div>
                     <div class="form-group">
                         <label>Motivo</label>
                         <select id="f-motivo">
                             <option>Chuva / Alagamento</option>
+                            <option>Greve / Manifestação</option>
                             <option>Aumento de Demanda</option>
-                            <option>Problemas Sistêmicos</option>
+                            <option>Falha Sistêmica</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Nível de Serviço Afetado *</label>
+                    <label>Nível de Serviço (SLA) Afetado *</label>
                     <div class="sla-selector">
                         <div class="sla-item" onclick="setSLA(this, 'Turbo 60')">Turbo 60</div>
                         <div class="sla-item" onclick="setSLA(this, 'Turbo 120')">Turbo 120</div>
@@ -217,32 +205,19 @@
                 </div>
             </div>
             <div class="form-footer">
-                <button class="btn-submit" onclick="registrarNoFirebase()">🚀 Registrar Contingência</button>
+                <button class="btn-submit" onclick="registrarNoFirebase()">REGISTRAR OPERAÇÃO</button>
             </div>
         </div>
     </div>
 
     <div id="historico" class="view">
-        <div class="view-header">
-            <div class="view-title">
-                <h1>Histórico Completo</h1>
-                <p>Todos os registros de contingência realizados</p>
-            </div>
-        </div>
-
-        <div class="history-filters">
-            <input type="text" class="search-input" placeholder="Buscar por motivo, região...">
-            <select><option>Todos Status</option></select>
-            <select><option>Todos Níveis</option></select>
-        </div>
-
         <table class="data-table">
             <thead>
                 <tr>
-                    <th>Nome / Contingência</th>
+                    <th>Contingência</th>
                     <th>UF</th>
                     <th>Localidade</th>
-                    <th>SLA Afetado</th>
+                    <th>SLA</th>
                     <th>Data/Hora</th>
                     <th>Status</th>
                 </tr>
@@ -287,20 +262,10 @@
         const tableBody = document.getElementById('table-body');
         tableBody.innerHTML = "";
         let count = 0; let ufs = new Set();
-
         snapshot.forEach((doc) => {
             const d = doc.data();
             count++; if(d.uf) ufs.add(d.uf);
-            tableBody.innerHTML += `
-                <tr>
-                    <td><b>${d.nome}</b><br><small style="color:#888">${d.motivo}</small></td>
-                    <td>${d.uf}</td>
-                    <td>${d.localidade}</td>
-                    <td><b style="color:var(--rd-purple)">${d.sla}</b></td>
-                    <td>${d.data}</td>
-                    <td class="badge-status">● ATIVO</td>
-                </tr>
-            `;
+            tableBody.innerHTML += `<tr><td><b>${d.nome}</b></td><td>${d.uf}</td><td>${d.localidade}</td><td><b style="color:var(--rd-purple)">${d.sla}</b></td><td>${d.data}</td><td class="status-dot">ATIVO</td></tr>`;
         });
         document.getElementById('dash-total').innerText = count;
         document.getElementById('dash-ativos').innerText = count;
@@ -318,12 +283,8 @@
             data: new Date().toLocaleString('pt-BR'),
             timestamp: Date.now()
         };
-        if(!payload.nome || !payload.uf || !selectedSLA) { alert("Preencha os obrigatórios!"); return; }
-        try {
-            await addDoc(collection(db, "logs"), payload);
-            alert("Registrado!");
-            switchTab('dashboard');
-        } catch (e) { alert("Erro."); }
+        if(!payload.nome || !payload.uf || !selectedSLA) { alert("Preencha todos os campos!"); return; }
+        try { await addDoc(collection(db, "logs"), payload); alert("Sucesso!"); switchTab('dashboard'); } catch (e) { alert("Erro ao salvar."); }
     };
 </script>
 </body>
