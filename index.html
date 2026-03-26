@@ -8,7 +8,6 @@
     <style>
         :root {
             --rd-purple: #4A148C;
-            --rd-purple-light: #6A1B9A; 
             --rd-verde-oliva: #607D3B;
             --rd-laranja: #F26522;
             --bg-body: #F9FAFB;
@@ -36,16 +35,14 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .logo-area { display: flex; align-items: center; gap: 10px; }
-        .brand-info { line-height: 1.2; }
         .brand-name { font-weight: 700; color: var(--text-main); font-size: 1rem; }
-        .brand-sub { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
+        .brand-sub { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
         nav { display: flex; gap: 8px; }
         .tab-btn {
             background: none; border: none; padding: 8px 20px;
             border-radius: 20px; cursor: pointer; font-weight: 600;
-            color: var(--text-muted); font-size: 0.85rem;
+            color: var(--text-muted); font-size: 0.85rem; transition: 0.2s;
         }
         .tab-btn.active { background-color: var(--rd-purple); color: var(--white); }
 
@@ -56,11 +53,6 @@
         .view-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; }
         .view-title h1 { margin: 0; font-size: 1.8rem; color: var(--text-main); }
         .view-title p { margin: 5px 0 0; color: var(--text-muted); font-size: 0.9rem; }
-
-        .btn-action-top { 
-            background-color: var(--rd-laranja); color: white; border: none; 
-            padding: 10px 25px; border-radius: 8px; font-weight: 700; cursor: pointer;
-        }
 
         .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
         .stat-card {
@@ -79,15 +71,12 @@
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
         .form-group { margin-bottom: 20px; }
         label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: var(--text-main); }
-        input, select, textarea { 
-            width: 100%; padding: 12px; border: 1px solid var(--border); 
-            border-radius: 8px; font-family: inherit; font-size: 0.9rem; background: #fff;
-        }
+        input, select { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; }
 
         .sla-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
         .sla-item { 
             border: 1px solid var(--border); padding: 15px; text-align: center; 
-            border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.8rem;
+            border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.8rem; color: var(--text-muted);
         }
         .sla-item.selected { border-color: var(--rd-purple); background: #F3E5F5; color: var(--rd-purple); }
 
@@ -97,7 +86,7 @@
         .data-table { width: 100%; border-collapse: collapse; background: var(--white); border: 1px solid var(--border); border-radius: 12px; }
         .data-table th { text-align: left; padding: 15px; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; border-bottom: 1px solid var(--border); }
         .data-table td { padding: 15px; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--text-main); }
-        .status-dot { color: var(--rd-laranja); font-weight: 700; }
+        .status-dot { color: var(--rd-laranja); font-weight: 700; font-size: 0.75rem; }
     </style>
 </head>
 <body>
@@ -106,13 +95,13 @@
     <div class="logo-area">
         <div class="brand-info">
             <div class="brand-name">SATURAÇÃO</div>
-            <div class="brand-sub">CONTROLE OPERACIONAL RD SAÚDE</div>
+            <div class="brand-sub">RD SAÚDE OPERAÇÕES</div>
         </div>
     </div>
     <nav>
-        <button class="tab-btn active" onclick="switchTab('dashboard')">Dashboard</button>
-        <button class="tab-btn" onclick="switchTab('novo')">Novo Registro</button>
-        <button class="tab-btn" onclick="switchTab('historico')">Histórico</button>
+        <button class="tab-btn active" id="btn-dashboard" onclick="switchTab('dashboard')">Dashboard</button>
+        <button class="tab-btn" id="btn-novo" onclick="switchTab('novo')">Novo Registro</button>
+        <button class="tab-btn" id="btn-historico" onclick="switchTab('historico')">Histórico</button>
     </nav>
 </header>
 
@@ -120,29 +109,15 @@
     <div id="dashboard" class="view active">
         <div class="view-header">
             <div class="view-title">
-                <h1>Painel de Controle</h1>
-                <p>Gestão de contingências e níveis de serviço em tempo real</p>
+                <h1>Painel Global</h1>
+                <p>Contingência</p>
             </div>
-            <button class="btn-action-top" onclick="switchTab('novo')">Novo Registro</button>
         </div>
-
         <div class="stats-grid">
-            <div class="stat-card card-ativos">
-                <span class="stat-val" id="dash-ativos">0</span>
-                <span class="stat-label">Eventos Ativos</span>
-            </div>
-            <div class="stat-card card-uf">
-                <span class="stat-val" id="dash-uf">0</span>
-                <span class="stat-label">UFs Afetadas</span>
-            </div>
-            <div class="stat-card" style="border-top: 4px solid #E5E7EB;">
-                <span class="stat-val">100%</span>
-                <span class="stat-label">Disponibilidade</span>
-            </div>
-            <div class="stat-card card-total">
-                <span class="stat-val" id="dash-total">0</span>
-                <span class="stat-label">Total Geral</span>
-            </div>
+            <div class="stat-card card-ativos"><span class="stat-val" id="dash-ativos">0</span><span class="stat-label">Eventos Ativos</span></div>
+            <div class="stat-card card-uf"><span class="stat-val" id="dash-uf">0</span><span class="stat-label">UFs Impactadas</span></div>
+            <div class="stat-card"><span class="stat-val">Online</span><span class="stat-label">Sincronização</span></div>
+            <div class="stat-card card-total"><span class="stat-val" id="dash-total">0</span><span class="stat-label">Total de Logs</span></div>
         </div>
     </div>
 
@@ -151,51 +126,37 @@
             <div class="form-body">
                 <div class="form-group">
                     <label>Nome da Contingência *</label>
-                    <input type="text" id="f-nome" placeholder="Ex: Saturação SP - Alagamentos">
+                    <input type="text" id="f-nome" placeholder="Nome da operação">
                 </div>
-
                 <div class="form-row">
                     <div class="form-group">
                         <label>UF *</label>
                         <select id="f-uf">
-                            <option value="">Selecione a UF</option>
-                            <option value="AC">Acre</option><option value="AL">Alagoas</option><option value="AP">Amapá</option><option value="AM">Amazonas</option>
-                            <option value="BA">Bahia</option><option value="CE">Ceará</option><option value="DF">Distrito Federal</option><option value="ES">Espírito Santo</option>
-                            <option value="GO">Goiás</option><option value="MA">Maranhão</option><option value="MT">Mato Grosso</option><option value="MS">Mato Grosso do Sul</option>
-                            <option value="MG">Minas Gerais</option><option value="PA">Pará</option><option value="PB">Paraíba</option><option value="PR">Paraná</option>
-                            <option value="PE">Pernambuco</option><option value="PI">Piauí</option><option value="RJ">Rio de Janeiro</option><option value="RN">Rio Grande do Norte</option>
-                            <option value="RS">Rio Grande do Sul</option><option value="RO">Rondônia</option><option value="RR">Roraima</option><option value="SC">Santa Catarina</option>
-                            <option value="SP">São Paulo</option><option value="SE">Sergipe</option><option value="TO">Tocantins</option>
+                            <option value="">Selecione...</option>
+                            <option value="AC">Acre</option><option value="AL">Alagoas</option><option value="AP">Amapá</option><option value="AM">Amazonas</option><option value="BA">Bahia</option><option value="CE">Ceará</option><option value="DF">Distrito Federal</option><option value="ES">Espírito Santo</option><option value="GO">Goiás</option><option value="MA">Maranhão</option><option value="MT">Mato Grosso</option><option value="MS">Mato Grosso do Sul</option><option value="MG">Minas Gerais</option><option value="PA">Pará</option><option value="PB">Paraíba</option><option value="PR">Paraná</option><option value="PE">Pernambuco</option><option value="PI">Piauí</option><option value="RJ">Rio de Janeiro</option><option value="RN">Rio Grande do Norte</option><option value="RS">Rio Grande do Sul</option><option value="RO">Rondônia</option><option value="RR">Roraima</option><option value="SC">Santa Catarina</option><option value="SP">São Paulo</option><option value="SE">Sergipe</option><option value="TO">Tocantins</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Localidade *</label>
                         <select id="f-localidade">
-                            <option>Capital</option>
-                            <option>Interior</option>
-                            <option>Ambos</option>
+                            <option>Capital</option><option>Interior</option><option>Ambos</option>
                         </select>
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Cidade (Opcional)</label>
+                        <label>Cidade</label>
                         <input type="text" id="f-cidade">
                     </div>
                     <div class="form-group">
                         <label>Motivo</label>
                         <select id="f-motivo">
-                            <option>Chuva / Alagamento</option>
-                            <option>Greve / Manifestação</option>
-                            <option>Aumento de Demanda</option>
-                            <option>Falha Sistêmica</option>
+                            <option>Chuva / Alagamento</option><option>Greve / Manifestação</option><option>Aumento de Demanda</option><option>Problema Sistêmico</option>
                         </select>
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <label>Nível de Serviço (SLA) Afetado *</label>
+                    <label>SLA Afetado *</label>
                     <div class="sla-selector">
                         <div class="sla-item" onclick="setSLA(this, 'Turbo 60')">Turbo 60</div>
                         <div class="sla-item" onclick="setSLA(this, 'Turbo 120')">Turbo 120</div>
@@ -205,7 +166,7 @@
                 </div>
             </div>
             <div class="form-footer">
-                <button class="btn-submit" onclick="registrarNoFirebase()">REGISTRAR OPERAÇÃO</button>
+                <button class="btn-submit" onclick="registrarNoFirebase()">EFETIVAR REGISTRO</button>
             </div>
         </div>
     </div>
@@ -214,7 +175,7 @@
         <table class="data-table">
             <thead>
                 <tr>
-                    <th>Contingência</th>
+                    <th>Operação</th>
                     <th>UF</th>
                     <th>Localidade</th>
                     <th>SLA</th>
@@ -248,7 +209,7 @@
         document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(id).classList.add('active');
-        if(event) event.currentTarget.classList.add('active');
+        document.getElementById('btn-' + id).classList.add('active');
     };
 
     window.setSLA = (el, val) => {
@@ -257,15 +218,25 @@
         selectedSLA = val;
     };
 
+    // SINCRONIZAÇÃO EM TEMPO REAL PARA TODOS OS USUÁRIOS
     const q = query(collection(db, "logs"), orderBy("timestamp", "desc"));
     onSnapshot(q, (snapshot) => {
         const tableBody = document.getElementById('table-body');
         tableBody.innerHTML = "";
         let count = 0; let ufs = new Set();
+
         snapshot.forEach((doc) => {
             const d = doc.data();
             count++; if(d.uf) ufs.add(d.uf);
-            tableBody.innerHTML += `<tr><td><b>${d.nome}</b></td><td>${d.uf}</td><td>${d.localidade}</td><td><b style="color:var(--rd-purple)">${d.sla}</b></td><td>${d.data}</td><td class="status-dot">ATIVO</td></tr>`;
+            tableBody.innerHTML += `
+                <tr>
+                    <td><b>${d.nome}</b><br><small style="color:var(--text-muted)">${d.motivo}</small></td>
+                    <td>${d.uf}</td>
+                    <td>${d.localidade} ${d.cidade ? '('+d.cidade+')' : ''}</td>
+                    <td><b style="color:var(--rd-purple)">${d.sla}</b></td>
+                    <td>${d.data}</td>
+                    <td class="status-dot">● ATIVO</td>
+                </tr>`;
         });
         document.getElementById('dash-total').innerText = count;
         document.getElementById('dash-ativos').innerText = count;
@@ -283,8 +254,14 @@
             data: new Date().toLocaleString('pt-BR'),
             timestamp: Date.now()
         };
-        if(!payload.nome || !payload.uf || !selectedSLA) { alert("Preencha todos os campos!"); return; }
-        try { await addDoc(collection(db, "logs"), payload); alert("Sucesso!"); switchTab('dashboard'); } catch (e) { alert("Erro ao salvar."); }
+        
+        if(!payload.nome || !payload.uf || !selectedSLA) { alert("Preencha os campos obrigatórios (*)"); return; }
+
+        try {
+            await addDoc(collection(db, "logs"), payload);
+            alert("Registro sincronizado com sucesso!");
+            switchTab('dashboard');
+        } catch (e) { alert("Erro de conexão. Verifique as regras do Firebase."); }
     };
 </script>
 </body>
